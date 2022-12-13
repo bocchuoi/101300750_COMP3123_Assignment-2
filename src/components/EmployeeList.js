@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export default function EmployeeList(props) {
     const navigate = useNavigate();
     const [employees, setEmployees] = React.useState([{}]);
+    const [msg, setMsg] = React.useState("");
 
     useEffect(() => {
         axios.get(`${props.serverIp}/api/emp/employees`)
@@ -17,9 +18,10 @@ export default function EmployeeList(props) {
     }, []);
 
     const deleteUser = (empId) => {
-        axios.delete(`${props.serverIp}/api/emp/employees?=eid=${empId}`)
+        axios.delete(`${props.serverIp}/api/emp/employees?eid=${empId}`)
         .then(res=>{
             console.log(res)
+            setMsg("Employee Deleted - Refresh To See Results")
         })
     }
 
@@ -38,6 +40,7 @@ export default function EmployeeList(props) {
     return (
         <div>
             <button className="form-button"><a href="/addEmployee">Add employee</a></button>
+            <label className="msg">{msg}</label>
             <label className="msg"></label>
             <table className="table table-dark">
                 <thead>
