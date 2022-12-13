@@ -39,8 +39,9 @@ body{
     right: -30px;
     bottom: -80px;
 }
-form{
-    height: 600px;
+form {
+    margin: 10px;
+    height: 90%;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -88,7 +89,8 @@ input{
 ::placeholder{
     color: #e5e5e5;
 }
-button{
+
+.form-button{
     margin-top: 50px;
     width: 100%;
     background-color: #ffffff;
@@ -100,8 +102,16 @@ button{
     cursor: pointer;
 }
 
+button {
+    margin: 3px;
+}
+
 .msg {
     text-align: center;
     color: lightblue;
     text-transform: uppercase;
+}
+
+a {
+    text-decoration: none;
 }

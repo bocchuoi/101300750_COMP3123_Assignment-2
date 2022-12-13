@@ -11,6 +11,8 @@ export default function Login(props) {
     const [password, setPassword] = React.useState("");  
     const [msg, setMsg] = React.useState("");  
 
+
+
     const onSubmit = async (e) => {
 
         await axios.post(`${props.serverIp}/api/user/login`, {username:username, password:password}, {
@@ -18,8 +20,10 @@ export default function Login(props) {
         }).then((res)=>{
             console.log(res);
             if (res.data.status == "logged in") {
-                localStorage.setItem('loggedin', true);
-                navigate("/");
+                // localStorage.setItem('loggedin', true);
+                // props.setIsLoggedIn(true);
+                props.handleLogin();
+                navigate("/employees");
             }
         })
         .catch((err)=>{
@@ -35,7 +39,8 @@ export default function Login(props) {
                 <input type="text" placeholder="Username" value={username} onChange={e=>setUserName(e.target.value)}/>
                 <label>Password</label>
                 <input type="password" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)}/>
-                <button type="button" onClick={onSubmit}>Log In</button>
+                <button className="form-button" type="button" onClick={onSubmit}>Log In</button>
+                <button className="form-button" type="button" onClick={()=>navigate("/register")}>Register</button>
                 <label className="msg">{msg}</label>
             </form>
         </div>
